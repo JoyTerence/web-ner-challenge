@@ -7,4 +7,4 @@ install:
 
 start:
 	cd $(FRONTEND) && npm run serve &
-	cd $(BACKEND) && flask run
+	cd $(BACKEND) && python -m spacy download en_core_web_sm && flask --debug run
