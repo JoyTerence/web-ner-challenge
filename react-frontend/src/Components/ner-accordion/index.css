@@ -1,8 +1,15 @@
 .accordion-container {
     padding: 10px;
     overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
+.accordion-container::--webkit-scrollbar {
+    padding: 10px;
+    overflow: scroll;
+    display: none;
+}
 .MuiAccordion-region {
     background: darkslategrey;
 }
