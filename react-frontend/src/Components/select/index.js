@@ -21,7 +21,7 @@ const SelectDrop = (props) => {
           label={props.title}
           onChange={(e) => props.onItemClick(e)}
         >
-          {props.items.map((item) => {
+          {props.items?.map((item) => {
             return (
               <MenuItem key={item} value={item}>
                 {item}

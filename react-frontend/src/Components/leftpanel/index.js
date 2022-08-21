@@ -9,7 +9,6 @@ import SelectDrop from "../../Components/select";
 import "./index.css";
 
 const LeftPanelContainer = (props) => {
-  const showModelDropdown = props.models && props.models.length;
   return (
     <div className="left-panel-container">
       <Editor
