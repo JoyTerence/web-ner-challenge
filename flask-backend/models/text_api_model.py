@@ -1,7 +1,7 @@
 from collections import defaultdict
 import requests
 
-from ..constants import *
+from constants import *
 
 LANG_TO_CODE_MAP = {
     "English": "en",
