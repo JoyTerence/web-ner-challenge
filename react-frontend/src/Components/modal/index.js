@@ -6,7 +6,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 import getAllMatching from "../../Utils/findmatching";
 
-import './index.css'
+import "./index.css";
 
 const style = {
   position: "absolute",
@@ -36,15 +36,10 @@ const getColorMap = (labels) => {
 };
 
 const HighlightModal = (props) => {
-  let textToHighlight = props.text
+  let textToHighlight = props.text;
 
-  const label_to_word = props.nerData.label_to_word;
-  const word_to_label = props.nerData.word_to_label;
-
-  console.log(label_to_word);
-  console.log(word_to_label);
-  console.log(label_to_word && Object.keys(label_to_word).length <= 0);
-  console.log(word_to_label && Object.keys(word_to_label).length <= 0);
+  const label_to_word = props.data.label_to_word;
+  const word_to_label = props.data.word_to_label;
 
   if (
     (label_to_word && Object.keys(label_to_word).length <= 0) ||
@@ -52,28 +47,25 @@ const HighlightModal = (props) => {
     !label_to_word ||
     !word_to_label
   ) {
-    console.log("Enter");
     return null;
   }
 
-  const labels = Object.keys(label_to_word);
-
-  const colorMap = getColorMap(labels);
-
   let search = Object.keys(word_to_label);
-
   const chunks = getAllMatching(textToHighlight, search, false);
 
+  const labels = Object.keys(label_to_word);
+  const colorMap = getColorMap(labels);
+
   const html = () => {
-    return chunks.map((chunk) => {
+    return chunks.map((chunk, index) => {
       const { end, highlight, start } = chunk;
       const text = textToHighlight.substr(start, end - start);
-      if (highlight) {
+      if (highlight && text in word_to_label) {
         let label = word_to_label[text]["label"];
         let color = colorMap[label];
         let style = { borderRadius: "5px", backgroundColor: color };
         return (
-          <Tooltip title={label}>
+          <Tooltip key={index} title={label}>
             <mark style={style}> {text} </mark>
           </Tooltip>
         );
@@ -83,8 +75,6 @@ const HighlightModal = (props) => {
     });
   };
 
-  console.log(html());
-
   return (
     <div>
       <Modal
@@ -93,21 +83,24 @@ const HighlightModal = (props) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          {html()}
-
-          <br/>
-          <br/>
-
-          <div className="legend-outer-container">
-          {labels.map((label) => {
-            return (
-              <div className="legend-inner-container">
-                <div className="legend-color-container" style={{ backgroundColor: colorMap[label] }} />
-                <span>{label}</span>
-              </div>
-            );
-          })}</div>
+        <Box className="highlight-modal-container" sx={style}>
+          <div className="highlight-modal-content">
+            <div className="highlight-modal-text-container">{html()}</div>
+            <div className="highlight-modal-vertical-line" />
+            <div className="highlight-modal-legend-container">
+              {labels.map((label, index) => {
+                return (
+                  <div key={index} className="legend-inner-container">
+                    <div
+                      className="legend-color-container"
+                      style={{ backgroundColor: colorMap[label] }}
+                    />
+                    <span>{label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </Box>
       </Modal>
     </div>

@@ -1,5 +1,17 @@
 # Web-based named entity recognition
 
+### What is new?:
+1. Enter text in text area and select a model (Spacy or Text API) and languages from the dropdown.
+2. You should see the NER results in the form of DropDown UI in the right panel as below:
+![app](./assets/full_screen.png)
+3. Also, added inline view that is visible after clicking the "Open inline view button" at the bottom.
+![inline-view](./assets//modal.png)
+4. This inline view color codes the tagged NER response and also supports tooltip NER info available on hover.
+![inline-view-tooltip-view](./assets/modal_tooltip.png)
+
+### Note:
+1. Text API is an online rest API that has only limited free credits. Once this limit is crossed, to continue using the API please create a new account [here](https://www.thetextapi.com/) and paste the token from [this](https://www.thetextapi.com/user) page at this [flask-backend/models/text_api_model.py#L12](https://github.com/JoyTerence/web-ner-challenge/blob/f03a64fe6fb4abe3874795277ddd7c62b243cd54/flask-backend/models/text_api_model.py#L12) 
+
 ### Background
 
 [Named entity recognition](https://en.wikipedia.org/wiki/Named-entity_recognition) (NER) is a very important and long-standing goal of the NLP community. In it, we attempt to identify and categorize "entities" from text so that we can use them for downstream processing such as argument attachment or [event extraction](http://ceur-ws.org/Vol-779/derive2011_submission_1.pdf).
@@ -37,3 +49,5 @@ Because we don't aim to test you on project setup, we have provided templates th
 ![Example app](./assets/web_ner_example.png)
 
 > If you have any questions/comments while working on this, please reach out to your contact at ISI.
+
+

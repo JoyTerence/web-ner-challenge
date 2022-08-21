@@ -9,6 +9,11 @@ LANG_TO_CODE_MAP = {
 
 
 class SpacyModel():
+    def __init__(self):
+        for lang in LANG_TO_CODE_MAP:
+            code = LANG_TO_CODE_MAP[lang]
+            print("Spacy downloading", code, "...")
+            spacy.cli.download(code)
 
     def get_supported_languages(self):
         return list(LANG_TO_CODE_MAP.keys())

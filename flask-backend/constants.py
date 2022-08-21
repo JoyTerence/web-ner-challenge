@@ -1,2 +1,4 @@
 DEFAULT_LANG = "English"
 DEFAULT_MODEL = "spacy"
+
+API_KEY = "296a3c04-8e50-489f-be3c-10ce36c818db"

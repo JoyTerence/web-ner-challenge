@@ -12,6 +12,8 @@ import api from "../../Api/api";
 
 import "./index.css";
 
+import * as payloadGenerator from "../../Api/payload";
+
 const Home = (props) => {
   const [value, setValue] = useState("");
 
@@ -21,18 +23,14 @@ const Home = (props) => {
   const [language, setLanguage] = useState(null);
   const [languages, setLanguages] = useState([]);
 
-  const [nerData, setNerData] = useState(null);
+  const [data, setData] = useState(null);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    const payload = {
-      method: "GET",
-      url: "/get_models",
-      headers: { "Content-Type": "application/json" },
-    };
+    const payload = payloadGenerator.getModels();
     const fetchModels = async () => {
       const res = await api(payload);
       setModels(res);
@@ -41,20 +39,12 @@ const Home = (props) => {
   }, []);
 
   useEffect(() => {
-    const payload = {
-      method: "POST",
-      url: "/get_supported_languages",
-      headers: { "Content-Type": "application/json" },
-      data: {
-        model: model,
-      },
-    };
+    const payload = payloadGenerator.getSupportedLanguages({ model: model });
     const fetchLanguages = async () => {
       const res = await api(payload);
       setLanguages(res);
     };
     if (model) {
-      console.log(model);
       fetchLanguages();
     }
   }, [model]);
@@ -64,35 +54,28 @@ const Home = (props) => {
   };
 
   const handleSubmit = async () => {
-    console.log(model, language);
     if (!model || !language) {
       alert("Please select both model and language");
       return;
     }
-    const payload = {
-      method: "POST",
-      url: "/get_entities",
-      headers: { "Content-Type": "application/json" },
-      data: {
-        text: value,
-        language: language,
-        model: model,
-      },
-    };
+    const payload = payloadGenerator.getEntitesPayload({
+      text: value,
+      language: language,
+      model: model,
+    });
     const res = await api(payload);
-    //  TODO: error
-    setNerData(res);
+    setData(res);
   };
 
   const onModelClick = (e) => {
     setModel(e.target.value);
+    setLanguage(null);
   };
 
   const onLanguageClick = (e) => {
     setLanguage(e.target.value);
   };
 
-  console.log(nerData);
   return (
     <div className="home-container">
       <div className="panel-container">
@@ -107,19 +90,19 @@ const Home = (props) => {
           onModelClick={onModelClick}
           onLanguageClick={onLanguageClick}
         />
-        <RightPanelContainer nerData={nerData} />
+        <RightPanelContainer data={data} />
       </div>
-      {nerData && (
-        <div>
+      {data && (
+        <div className="highlight-modal-button-container">
           <HighlightModal
             open={open}
             handleOpen={handleOpen}
             handleClose={handleClose}
-            nerData={nerData}
+            data={data}
             text={value}
           />
           <Button variant="contained" color="success" onClick={handleOpen}>
-            Open Modal
+            Open Inline View
           </Button>
         </div>
       )}

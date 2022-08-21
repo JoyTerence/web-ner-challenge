@@ -1,3 +1,8 @@
-.MuiPaper-root {
-    
+.accordion-container {
+    padding: 10px;
+    overflow: scroll;
+}
+
+.MuiAccordion-region {
+    background: darkslategrey;
 }

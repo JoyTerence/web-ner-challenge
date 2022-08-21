@@ -1,6 +1,4 @@
 
-# TODO: Add Typing checks and pip8 style
-
 def get_supported_languages(model):
     if model == "spacy":
         return ["English, French"]

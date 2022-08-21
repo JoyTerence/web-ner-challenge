@@ -9,7 +9,6 @@ import SelectDrop from "../../Components/select";
 import "./index.css";
 
 const LeftPanelContainer = (props) => {
-
   const showModelDropdown = props.models && props.models.length;
   return (
     <div className="left-panel-container">
@@ -19,16 +18,12 @@ const LeftPanelContainer = (props) => {
         value={props.value}
       />
       <div className="left-control-container">
-        {showModelDropdown ? (
-          <SelectDrop
-            title="Model"
-            value={props.model}
-            items={props.models}
-            onItemClick={props.onModelClick}
-          />
-        ) : (
-          <span> "No models" </span>
-        )}
+        <SelectDrop
+          title="Model"
+          value={props.model}
+          items={props.models}
+          onItemClick={props.onModelClick}
+        />
         <SelectDrop
           title="Language"
           value={props.language}

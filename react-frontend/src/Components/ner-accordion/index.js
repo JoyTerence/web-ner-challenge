@@ -5,8 +5,9 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+import './index.css'
+
 const NERAccordion = (props) => {
-  console.log(props);
   return (
     <div className="accordion-container">
       <Accordion>
@@ -20,7 +21,7 @@ const NERAccordion = (props) => {
 
         {props.words.map((word, index) => {
           return (
-            <AccordionDetails key={index}>
+            <AccordionDetails className="accordion-detail-container" key={index}>
               <Typography>{word}</Typography>
             </AccordionDetails>
           );
