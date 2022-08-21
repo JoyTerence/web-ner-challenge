@@ -1,3 +1,4 @@
+from collections import defaultdict
 import requests
 
 LANG_TO_CODE_MAP = {
@@ -24,13 +25,14 @@ class TextApiModel():
     def get_entities(self, text, language="English"):
         if not self.is_language_supported(language):
             # TODO: handle error
-            pass
+            raise ValueError("Invalid language passed")
         body = {
             "text" : text
         }
-        response = {}
+        response = {"label_to_word": defaultdict(list), "word_to_label": {}}
         res = requests.post(self.api_url, headers=self.headers, json=body).json()["ner"]
+        print (res)
         for entry in res:
-            print(entry)
-            response[entry[1]] = entry[0]
+            response["word_to_label"][entry[1]] = entry[0]
+            response["label_to_word"][entry[0]].append(entry[1])
         return response

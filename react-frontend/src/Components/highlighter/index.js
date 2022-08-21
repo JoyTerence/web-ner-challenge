@@ -1,4 +1,8 @@
 import React from "react";
+import TextareaAutosize from "react-textarea-autosize";
+import getAllMatching from "../../Utils/findmatching";
+
+import "./index.css";
 
 // const Highlighter = ({ text = "", highlights = [] }) => {
 // if (!highlights || !highlights.length) {
@@ -24,9 +28,18 @@ import React from "react";
 // };
 
 const Highlighter = (props) => {
+  // getAllMatching(props.value)
   return (
     <div>
-      <textarea name="NER input" onChange={props.onChange} value={props.value} />
+      <TextareaAutosize
+        placeholder={"Enter your text here"}
+        className="text-container"
+        onChange={props.onChange}
+        value={props.value}
+        maxRows="100"
+        minRows="30"
+        cols="80"
+      />
     </div>
   );
 };

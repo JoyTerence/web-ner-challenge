@@ -16,9 +16,14 @@ def get_entities():
     model_name = request.json.get("model", DEFAULT_MODEL)
     text = request.json.get("text", "")
 
-    model = get_model(model_name)
-    res = model.get_entities(text, language)
-    return jsonify(res)
+    try:
+        model = get_model(model_name)
+        res = model.get_entities(text, language)
+        return jsonify(res)
+    except ValueError as err:
+        return "ValueError: " + str(err), 400
+    except KeyError as err:
+        return "KeyError: " + str(err), 400
 
 @app.route("/get_models", methods=['GET'])
 def get_models():

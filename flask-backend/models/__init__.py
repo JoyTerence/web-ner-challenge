@@ -11,5 +11,5 @@ def get_all_models():
 
 def get_model(model_name):
     print (NAME_TO_MODEL_MAP)
-    return NAME_TO_MODEL_MAP.get(model_name, None)
+    return NAME_TO_MODEL_MAP[model_name]
 

@@ -1,0 +1,32 @@
+.right-panel-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 2em;
+}
+
+.accordion-container > .MuiPaper-root {
+    background-color: #1d1e1e !important;
+}
+
+.accordion-container > .MuiTypography-root {
+    color: white !important;
+}
+
+.accordion-container > .MuiCollapse-root {
+    width: 50%;
+}
+
+.MuiAccordionSummary-content p {
+    color: white !important;
+}
+
+.MuiAccordionDetails-root p {
+    color: white !important;
+}
+
+.nothing-to-display-banner {
+    color: white;
+}

@@ -1,0 +1,16 @@
+.legend-outer-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.legend-inner-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.legend-color-container {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+}

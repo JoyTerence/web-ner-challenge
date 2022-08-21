@@ -1,3 +1,4 @@
+from collections import defaultdict
 from dataclasses import is_dataclass
 import spacy
 
@@ -20,13 +21,14 @@ class SpacyModel():
 
     def get_entities(self, text, language):
         if not self.is_language_supported(language):
-            # TODO: handle error
-            pass
+            raise ValueError("Invalid language passed")
         engine = spacy.load(self.get_lang_code(language))
         result = engine(text)
-        response = {}
+        response = {"label_to_word": defaultdict(list), "word_to_label": {}}
         if result.ents:
             for ent in result.ents:
-                response[ent.text] = {"label": ent.label_,
+                response["word_to_label"][ent.text] = {"label": ent.label_,
                                       "description": spacy.explain(ent.label_)}
+                response["label_to_word"][ent.label_].append(ent.text)
+
         return response

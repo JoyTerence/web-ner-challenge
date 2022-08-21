@@ -1,0 +1,21 @@
+.selectdrop-container {
+  width: 120px;
+  color: white;
+}
+
+.select-container {
+  color: white;
+}
+
+.input-span {
+  color: white;
+}
+
+.MuiSvgIcon-root {
+  color: white !important;
+}
+
+.MuiSelect-select {
+  background-color: mediumblue !important;
+  color: white !important;
+}
