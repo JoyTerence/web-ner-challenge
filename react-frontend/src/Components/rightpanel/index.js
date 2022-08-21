@@ -7,7 +7,7 @@ const RightPanelContainer = (props) => {
   const label_to_word = props.data ? props.data["label_to_word"] : null;
 
   const NothingToDisplay = () => (
-    <span className="nothing-to-display-banner">Oops! the model did not recognize anything. Try with another model or text</span>
+    <span className="nothing-to-display-banner">No entities found. Try with another model or text</span>
   );
 
   return (
