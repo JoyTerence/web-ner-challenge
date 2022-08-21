@@ -11,7 +11,7 @@
 
 ### Note:
 1. Text API is an online rest API that has only limited free credits. Once this limit is crossed, to continue using the API please create a new account [here](https://www.thetextapi.com/) and paste the token from [this](https://www.thetextapi.com/user) page at this [flask-backend/constants.py#L4](https://github.com/JoyTerence/web-ner-challenge/blob/d944eee4a11deb614e8f0604f0fbdee3e938c06d/flask-backend/constants.py#L4) line.
-2. Use node v16.
+2. Use node v16 and python 3.10
 
 ### Background
 
