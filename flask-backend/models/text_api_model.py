@@ -31,9 +31,7 @@ class TextApiModel():
             "text" : text
         }
         response = {"label_to_word": defaultdict(list), "word_to_label": defaultdict(lambda: defaultdict(list))}
-        print(requests.post(self.api_url, headers=self.headers, json=body).json())
         res = requests.post(self.api_url, headers=self.headers, json=body).json()["ner"]
-        print (res)
         for entry in res:
             response["word_to_label"][entry[1]]["label"] = entry[0]
             response["label_to_word"][entry[0]].append(entry[1])

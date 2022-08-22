@@ -7,4 +7,4 @@ install:
 
 start:
 	cd $(FRONTEND) && npm run serve &
-	cd $(BACKEND) && flask --debug run
+	cd $(BACKEND) && flask run
